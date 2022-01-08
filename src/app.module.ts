@@ -5,11 +5,11 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
 
-import * as ormconfig from './config/ormconfig';
-
+import { default as ormconfig } from './config/ormconfig';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
+      name: 'default',
       host: ormconfig.host,
       type: ormconfig.type,
       port: ormconfig.port,

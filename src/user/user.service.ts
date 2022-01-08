@@ -1,21 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
-import { Connection, DeleteResult, Repository } from 'typeorm';
+import { DeleteResult } from 'typeorm';
 import { User } from './user.entity';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectConnection('default') private connection: Connection,
-    @InjectRepository(User) private userRepository: Repository<User>,
-  ) {}
+  constructor(private userRepository: UserRepository) {}
 
   save(user: User): Promise<User> {
     return this.userRepository.save(user);
   }
 
   find(): Promise<any[]> {
-    return this.connection.query('select * from user');
+    return this.userRepository.find();
   }
 
   findAll(): Promise<User[]> {

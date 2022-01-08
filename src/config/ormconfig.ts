@@ -1,5 +1,6 @@
 console.log({ NODE_ENV: process.env.NODE_ENV });
-const config = {
+
+export default {
   host: 'localhost',
   type: 'mysql',
   port: 3306,
@@ -13,5 +14,3 @@ const config = {
   },
   synchronize: false,
 };
-
-export = config;
